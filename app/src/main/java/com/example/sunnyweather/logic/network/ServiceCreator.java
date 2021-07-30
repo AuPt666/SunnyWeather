@@ -16,13 +16,12 @@ public class ServiceCreator {
     private ServiceCreator(){};
     public static synchronized ServiceCreator getServiceCreator(){
         if(serviceCreator == null){
-            return new ServiceCreator();
-        }else{
-            return serviceCreator;
+            serviceCreator = new ServiceCreator();
         }
+        return serviceCreator;
     }
 
-    public Object create(Class<Object> serviceClass){
+    public Object create(Class serviceClass){
         return retrofit.create(serviceClass);
     }
 

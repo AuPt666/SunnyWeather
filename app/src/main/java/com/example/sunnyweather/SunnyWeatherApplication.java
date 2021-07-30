@@ -8,7 +8,7 @@ import android.content.Context;
 public class SunnyWeatherApplication extends Application {
     @SuppressLint("StaticFieldLeak")
     public static Context context;
-    public static final String TOKEN = "";//天气令牌
+    public static final String TOKEN = "9yF91QzioUsEahWd";//天气令牌
 
     @Override
     public void onCreate() {
