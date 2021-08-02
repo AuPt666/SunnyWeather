@@ -8,12 +8,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ServiceCreator {
     private static ServiceCreator serviceCreator;
     private static final String BASE_URL = "https://api.caiyunapp.com";
-    private static Retrofit retrofit = (new Retrofit.Builder())
-            .baseUrl("https://api.caiyunapp.com/")
-            .addConverterFactory((Converter.Factory)GsonConverterFactory.create())
-            .build();;
+    private Retrofit retrofit ;
 
-    private ServiceCreator(){};
+    private ServiceCreator(){
+        retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();;
+    };
     public static synchronized ServiceCreator getServiceCreator(){
         if(serviceCreator == null){
             serviceCreator = new ServiceCreator();
@@ -21,11 +23,13 @@ public class ServiceCreator {
         return serviceCreator;
     }
 
-    public Object create(Class serviceClass){
-        return retrofit.create(serviceClass);
+
+    //创建一个网络请求接口的实例并输出
+    public PlaceService create(Class serviceClass){
+        return (PlaceService) retrofit.create(serviceClass);
     }
 
     public Object create(){
-        return this.create(Object.class);
+        return this.create(Class.class);
     }
 }
